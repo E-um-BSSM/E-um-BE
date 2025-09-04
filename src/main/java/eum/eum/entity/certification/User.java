@@ -1,4 +1,4 @@
-package eum.eum.entity;
+package eum.eum.entity.certification;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +24,8 @@ public class User {
     private String email;
     private String password; // BCrypt로 암호화 저장
     private Integer strength = 1000;
+
+    @Column(name = "system_role")
     private String systemRole; // student | admin
     private String bsmId;
     private LocalDateTime createdAt = LocalDateTime.now();
