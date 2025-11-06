@@ -1,0 +1,13 @@
+rootProject.name = 'E-um'
+
+include 'gateway'
+include 'common'
+include 'services'
+include 'services:user'
+include 'services:classroom'
+include 'services:assignment'
+include 'services:review'
+include 'services:community'
+include 'services:item'
+include 'services:transaction'
+include 'services:push'
