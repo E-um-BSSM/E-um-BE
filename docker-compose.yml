@@ -1,0 +1,108 @@
+version: "3.9"
+
+services:
+  eum-assignment:
+    image: mysql:8.0
+    container_name: eum-assignment
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: assignment
+    ports:
+      - "3307:3306"
+    volumes:
+      - assignment-data:/var/lib/mysql
+
+  eum-classroom:
+    image: mysql:8.0
+    container_name: eum-classroom
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: classroom
+    ports:
+      - "3308:3306"
+    volumes:
+      - classroom-data:/var/lib/mysql
+
+  eum-community:
+    image: mysql:8.0
+    container_name: eum-community
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: community
+    ports:
+      - "3309:3306"
+    volumes:
+      - community-data:/var/lib/mysql
+
+  eum-item:
+    image: mysql:8.0
+    container_name: eum-item
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: item
+    ports:
+      - "3310:3306"
+    volumes:
+      - item-data:/var/lib/mysql
+
+  eum-push:
+    image: mysql:8.0
+    container_name: eum-push
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: push
+    ports:
+      - "3311:3306"
+    volumes:
+      - push-data:/var/lib/mysql
+
+  eum-review:
+    image: mysql:8.0
+    container_name: eum-review
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: review
+    ports:
+      - "3312:3306"
+    volumes:
+      - review-data:/var/lib/mysql
+
+  eum-transaction:
+    image: mysql:8.0
+    container_name: eum-transaction
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: transaction
+    ports:
+      - "3313:3306"
+    volumes:
+      - transaction-data:/var/lib/mysql
+
+  eum-user:
+    image: mysql:8.0
+    container_name: eum-user
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: user
+    ports:
+      - "3314:3306"
+    volumes:
+      - user-data:/var/lib/mysql
+
+volumes:
+  assignment-data:
+  classroom-data:
+  community-data:
+  item-data:
+  push-data:
+  review-data:
+  transaction-data:
+  user-data:
