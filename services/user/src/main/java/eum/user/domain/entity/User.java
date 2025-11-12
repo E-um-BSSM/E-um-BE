@@ -22,7 +22,7 @@ public class User {
     @Id
     @GeneratedValue
     @UuidGenerator
-    @Column(unique = true, nullable = false, name = "user_id")
+    @Column(unique = true, nullable = false, updatable = false, name = "user_id")
     private String userId; // 유저 고유 아이디
 
     @Column(nullable = false)
