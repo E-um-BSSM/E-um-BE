@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -48,4 +50,12 @@ public class ClassRoom {
     @CreationTimestamp
     @Column(nullable = false, name = "created_at")
     private LocalDateTime createdAt; // 클래스 생성 시간
+
+    @Builder.Default
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ClassTag> classTags = new ArrayList<>(); // 클래스 태그와의 매핑
+
+    @Builder.Default
+    @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ClassMember> classMembers = new ArrayList<>(); // 클래스 맴버와의 매핑
 }
