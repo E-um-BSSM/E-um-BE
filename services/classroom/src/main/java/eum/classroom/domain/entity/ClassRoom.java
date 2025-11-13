@@ -1,6 +1,7 @@
 package eum.classroom.domain.entity;
 
 import eum.classroom.global.constclass.AccessScope;
+import eum.classroom.global.constclass.ClassDifficult;
 import eum.classroom.global.constclass.ClassStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,8 +34,8 @@ public class ClassRoom {
     private Long classRoomCode; // 클래스 초대코드 (만료 있음!)
 
     @Builder.Default
-    @Column(nullable = false, columnDefinition = "integer default 0")
-    private Long difficultyLevel = (Long)0L; // 클래스 난이도 [0은 측정안됨]
+    @Column(nullable = false)
+    private ClassDifficult difficultyLevel = ClassDifficult.NORMAL; // 클래스 난이도 [0은 측정안됨]
 
     @Builder.Default
     @Column(nullable = false, name = "access_scope")
