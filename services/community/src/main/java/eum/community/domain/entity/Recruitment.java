@@ -17,9 +17,8 @@ import java.time.LocalDateTime;
 @DiscriminatorValue("RECRUITMENT")
 public class Recruitment extends BaseThread {
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "class_id", insertable = false, updatable = false)
-    private ClassRoom classRoom;
+    @Column(name = "class_id", nullable = false)
+    private Long classRoomId;
 
     @Column(name = "max_participants")
     private Long maxParticipants;

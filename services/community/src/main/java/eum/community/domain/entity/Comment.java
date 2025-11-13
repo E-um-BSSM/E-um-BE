@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Table(name = "article_comments")
-public class ArticleComment{
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,10 @@ public class ArticleComment{
     @Column(nullable = false, name = "created_by")
     private String createdBy; // 댓글 생성 유저 고유 아이디
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_id", insertable = false, updatable = false)
-    private Article article; // 댓글이 속한 게시판의 고유 아이디
+    @Builder.Default
+    @Column(name = "is_accepted", columnDefinition = "bool default false")
+    private Boolean isAccepted = false; // Question의 채택 답변 여부
+
+    @Column(name = "thread_id", nullable = false)
+    private Long threadId; // 댓글이 속한 쓰레드의 고유 아이디
 }
