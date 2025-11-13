@@ -15,9 +15,6 @@ public class ClassTag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 클래스 태그의 고유 아이디
 
-    @Column(nullable = false, name = "class_id")
-    private Long classId; // 참조 클래스 고유 아이디
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "class_id", insertable = false, updatable = false)
     private ClassRoom classRoom; // 참조 클래스
