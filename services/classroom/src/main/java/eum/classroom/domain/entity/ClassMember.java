@@ -14,16 +14,17 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Table(name = "class_members")
-@IdClass(ClassMemberId.class)
 public class ClassMember {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "class_id", insertable = false, updatable = false)
-    private ClassRoom classRoom; // 참조 클래스
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // 클래스 맴버 고유 아이디
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user; // 참조 유저
+    @Column(name = "class_id", nullable = false)
+    private Long classId; // 참조 클래스 고유 아이디
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId; // 참조 유저 고유 아이디
 
     @Builder.Default
     @Column(nullable = false)
