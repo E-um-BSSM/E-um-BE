@@ -4,5 +4,5 @@ public enum ClassStatus {
     ACTIVE,
     ARCHIVED,
     STOPPED,
-    DELETED,
+    DELETED
 }

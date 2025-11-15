@@ -3,7 +3,6 @@ package eum.classroom.domain.entity;
 import eum.classroom.global.constclass.ClassRole;
 import jakarta.persistence.*;
 import lombok.*;
-import eum.user.domain.entity.User;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;

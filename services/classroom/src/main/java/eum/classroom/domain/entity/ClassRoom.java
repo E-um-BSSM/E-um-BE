@@ -5,7 +5,6 @@ import eum.classroom.global.constclass.ClassStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

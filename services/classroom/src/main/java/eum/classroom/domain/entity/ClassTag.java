@@ -2,7 +2,6 @@ package eum.classroom.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
