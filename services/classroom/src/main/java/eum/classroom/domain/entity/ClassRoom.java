@@ -5,7 +5,6 @@ import eum.classroom.global.constclass.ClassStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class ClassRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false, unique = true, name = "classroom_id")
-    private Long classRoomId; // 클래스 고유 아이디
+    private Long id; // 클래스 고유 아이디
 
     @Column(nullable = false)
     private String title; // 클래스 제목
