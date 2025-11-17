@@ -1,0 +1,290 @@
+//////////////////////////////////////////////////////
+// 인증 시스템
+//////////////////////////////////////////////////////
+
+Table users {
+  id varchar [primary key]
+  username varchar
+  email varchar
+  password varchar
+  strength integer [note:'내공', default: 1000]
+  system_role varchar [note: 'student | admin']
+  bsm_id varchar [note: 'BSM OAuth 연동용']
+  created_at timestamp
+  currency integer [default: 0]
+  daily_compensation_at timestamp
+  equipped_badge varchar
+}
+
+//////////////////////////////////////////////////////
+// 멘토링 클래스 관리
+//////////////////////////////////////////////////////
+
+Table classrooms {
+  id integer [primary key]
+  title varchar
+  class_code varchar
+  description text
+  difficulty integer
+  access_scope varchar [note: 'public | unlisted | private']
+  created_by varchar [note: 'user_id']
+  status varchar [note: 'active, archived']
+  created_at timestamp
+}
+
+Table class_tag {
+  id integer [primary key]
+  class_id integer
+  content varchar
+}
+
+Table waiting_list {
+  class_id integer
+  user_id varchar
+  joined_at timestamp
+  primary key (class_id, user_id)
+}
+
+Table class_members {
+  class_id integer
+  user_id varchar
+  role_id integer
+  joined_at timestamp
+  primary key (class_id, user_id)
+}
+
+Table assignments {
+  id integer [primary key]
+  class_id integer
+  title varchar
+  description text
+  due_date timestamp
+  created_at timestamp
+  difficulty integer
+}
+
+Table submissions {
+  id integer [primary key]
+  assignment_id integer
+  student_id varchar [note: 'user_id']
+  content text
+  file_url varchar [null]
+  submitted_at timestamp [note: 'default: now()']
+  graded_at timestamp [null]
+  score integer [null]
+  feedback text [null]
+  status varchar [note:'submitted, late, graded']
+}
+
+Table schedules {
+  id integer [primary key]
+  class_id integer
+  description text
+  start_time timestamp
+  end_time timestamp
+  location varchar [null]
+}
+
+Table schedules_user {
+  schedule_id integer
+  user_id varchar
+  is_possible boolean
+  primary key (schedule_id, user_id)
+}
+
+Table announcement {
+  id integer [primary key]
+  class_id integer
+  title varchar
+  content text
+  created_at timestamp
+}
+
+Ref: assignments.class_id > classrooms.id
+Ref: schedules.class_id > classrooms.id
+Ref: announcement.class_id > classrooms.id
+Ref: class_tag.class_id > classrooms.id
+Ref: submissions.assignment_id > assignments.id
+Ref: schedules_user.schedule_id > schedules.id
+Ref: class_members.class_id > classrooms.id
+Ref: waiting_list.class_id > classrooms.id
+
+//////////////////////////////////////////////////////
+// 커뮤니티 게시판 (BaseThread 상속 구조)
+//////////////////////////////////////////////////////
+
+Table threads {
+  id bigint [primary key]
+  type varchar [note: 'ARTICLE | RECRUITMENT | QUESTION | INQUIRY']
+  title varchar
+  content text
+  created_at timestamp
+  updated_at timestamp
+  created_by varchar [note: 'user_id']
+}
+
+// Article (게시판)
+Table articles {
+  id bigint [primary key, ref: - threads.id]
+  status varchar [note: 'draft | published', default: 'published']
+  view_count integer [default: 0]
+}
+
+// Recruitment (모집글)
+Table recruitments {
+  id bigint [primary key, ref: - threads.id]
+  class_id integer
+  max_participants integer
+  current_participants integer [default: 0]
+  recruitment_status varchar [note: 'open | closed | completed', default: 'open']
+  deadline timestamp
+}
+
+// Question (지식인)
+Table questions {
+  id bigint [primary key, ref: - threads.id]
+  is_resolved boolean [default: false]
+  accepted_answer_id bigint [null]
+  bounty_points integer [default: 0]
+  view_count integer [default: 0]
+}
+
+// Inquiry (문의)
+Table inquiries {
+  id bigint [primary key, ref: - threads.id]
+  inquiry_type varchar [note: '일반 | 신고 | 버그 | 제안']
+  status varchar [note: 'pending | in_progress | resolved | closed', default: 'pending']
+  admin_response text [null]
+  responded_at timestamp [null]
+  responded_by varchar [null, note: 'admin user_id']
+}
+
+// Comment (댓글 - 별도 테이블)
+Table comments {
+  id bigint [primary key]
+  thread_id bigint [note: 'article_id or question_id']
+  created_by varchar [note: 'user_id']
+  content text
+  is_accepted boolean [default: false, note: 'Question 댓글 채택 여부']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Ref: comments.thread_id > threads.id
+Ref: questions.accepted_answer_id > comments.id
+
+//////////////////////////////////////////////////////
+// 뱃지 시스템
+//////////////////////////////////////////////////////
+
+Table badges {
+  id integer [primary key]
+  name varchar [note: '대답 고수, 대답 전문가, 대답 슈퍼맨, 신입생, 빅 클래스, 부지런!, 슈퍼 부지런!!, 궁금증 박사, 졸업생']
+  description text
+}
+
+Table user_badges {
+  user_id varchar
+  badge_id integer
+  earned_at timestamp
+  primary key (user_id, badge_id)
+}
+
+Ref: user_badges.badge_id > badges.id
+
+//////////////////////////////////////////////////////
+// 후기 시스템
+//////////////////////////////////////////////////////
+
+Table reviews {
+  id integer [primary key]
+  reviewer_id varchar [note: 'user_id']
+  reviewee_id varchar [note: 'user_id']
+  class_id integer
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table review_tag_mappings {
+  review_id integer
+  tag_id integer
+  primary key (review_id, tag_id)
+}
+
+Table tags {
+  tag_id integer [primary key]
+  name varchar [note: '열정적, 성실한, 철저한, 계획적, 깔끔한, 구체적, 활발한, 책임적인, 믿음직한, 강인한, 겸손한, 귀여운, 리더십있는, 느긋한, 기특한, 낭만적인, 단호한, 솔직한, 다정한, 털털한, 신중한']
+}
+
+Ref: reviews.class_id > classrooms.id
+Ref: review_tag_mappings.review_id > reviews.id
+Ref: review_tag_mappings.tag_id > tags.tag_id
+
+//////////////////////////////////////////////////////
+// 재화 시스템
+//////////////////////////////////////////////////////
+
+Table transactions {
+  id integer [primary key]
+  sender_id varchar [note: 'user_id']
+  receiver_id varchar [note: 'user_id']
+  amount integer
+  type varchar [note: 'earn | spend | transfer | daily']
+  created_at timestamp
+}
+
+//////////////////////////////////////////////////////
+// 프로필
+//////////////////////////////////////////////////////
+
+Table profiles {
+  user_id varchar [primary key]
+  color varchar
+  border varchar
+  background varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table items {
+  id integer [primary key]
+  name varchar
+  type varchar [note: 'color | border | background']
+  rarity varchar
+}
+
+Table user_items {
+  user_id varchar
+  item_id integer
+  is_equipped boolean
+  obtained_at timestamp
+  primary key (user_id, item_id)
+}
+
+Ref: profiles.user_id > users.id
+Ref: user_items.item_id > items.id
+
+//////////////////////////////////////////////////////
+// 알람 시스템
+//////////////////////////////////////////////////////
+
+Table notification_body {
+  id integer [primary key]
+  type varchar [note: 'class_schedule | assignment | waiting_list | class_joined | announcement | comment | question_answered']
+  title varchar
+  body text
+  created_at timestamp
+}
+
+Table notification {
+  id integer [primary key]
+  body_id integer
+  user_id varchar
+  is_read boolean [default: false]
+  read_at timestamp [null]
+}
+
+Ref: notification.body_id > notification_body.id
+
+
+Ref: "classrooms"."created_by" < "classrooms"."created_at"
