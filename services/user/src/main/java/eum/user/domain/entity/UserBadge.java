@@ -1,9 +1,11 @@
-package eum.classroom.domain.entity;
+package eum.user.domain.entity;
 
-import eum.classroom.global.constclass.ClassRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -15,22 +17,25 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "class_members")
+@Table(name = "user_badges")
 @Getter
-@EqualsAndHashCode(of = "id")
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class ClassMember {
+public class UserBadge {
 
     @EmbeddedId
-    private ClassMemberId id;
+    private UserBadgeId id;
 
-    @Builder.Default
-    @Column(nullable = false)
-    private ClassRole role = ClassRole.MENTEE;
+    @MapsId("userId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    @MapsId("badgeId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Badge badge;
 
     @CreationTimestamp
-    @Column(nullable = false, name = "joined_at")
-    private LocalDateTime joinedAt;
+    @Column(name = "earned_at", updatable = false)
+    private LocalDateTime earnedAt;
 }

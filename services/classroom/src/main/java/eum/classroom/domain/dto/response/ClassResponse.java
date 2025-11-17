@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record ClassResponse(
-        String classId,
+        Long classId,
         String title,
-        String classCode,
+        Long classCode,
         String description,
         List<String> tags,
         Long difficulty,

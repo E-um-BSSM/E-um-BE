@@ -1,4 +1,4 @@
-package eum.classroom.global.dto;
+package eum.user.global.dto;
 
 public record ApiResponse<T>(
         boolean success,

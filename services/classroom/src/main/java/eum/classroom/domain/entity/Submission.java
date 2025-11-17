@@ -21,6 +21,9 @@ public class Submission {
     @Column(name = "assignment_id", nullable = false)
     private Long assignmentId;
 
+    @Column(name = "student_id", nullable = false)
+    private String studentId;
+
     @Column(columnDefinition = "text")
     private String content;
 
@@ -41,4 +44,11 @@ public class Submission {
 
     @Column(nullable = false)
     private SubmissionStatus status;
+
+    public void updateFeedback(String feedback, Long score) {
+        this.feedback = feedback;
+        this.score = score;
+        this.gradedAt = java.time.LocalDateTime.now();
+        this.status = SubmissionStatus.GRADED;
+    }
 }

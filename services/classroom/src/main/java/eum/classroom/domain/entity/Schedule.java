@@ -19,6 +19,9 @@ public class Schedule {
     @Column(name = "class_id", nullable = false)
     private Long classId;
 
+    @Column(nullable = false)
+    private String title;
+
     @Column(columnDefinition = "text")
     private String description;
 
@@ -29,4 +32,12 @@ public class Schedule {
     private LocalDateTime endTime;
 
     private String location;
+
+    public void update(String title, String description, LocalDateTime startTime, LocalDateTime endTime, String location) {
+        this.title = title;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.location = location;
+    }
 }

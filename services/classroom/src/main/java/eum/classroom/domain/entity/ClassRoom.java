@@ -15,11 +15,11 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @Getter
-@Table(name = "classrooms")
+@Table(name = "classes")
 public class ClassRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false, unique = true, name = "classroom_id")
+    @Column(nullable = false, updatable = false, unique = true, name = "id")
     private Long id; // 클래스 고유 아이디
 
     @Column(nullable = false)
@@ -28,11 +28,11 @@ public class ClassRoom {
     @Column(nullable = false)
     private String description; // 클래스 부가설명
 
-    @Column(name = "classroom_code")
+    @Column(name = "class_code")
     private Long classRoomCode; // 클래스 초대코드 (만료 있음!)
 
     @Builder.Default
-    @Column(nullable = false, columnDefinition = "integer default 0")
+    @Column(name = "difficulty", nullable = false, columnDefinition = "integer default 0")
     private Long difficultyLevel = (Long)0L; // 클래스 난이도 [0은 측정안됨]
 
     @Builder.Default
@@ -40,7 +40,7 @@ public class ClassRoom {
     private AccessScope accessScope = AccessScope.PRIVATE; // 클래스 공개 범위
 
     @Builder.Default
-    @Column(nullable = false, name = "class_status")
+    @Column(nullable = false, name = "status")
     private ClassStatus classStatus = ClassStatus.ARCHIVED; // 클래스 현재 상태
 
     @Column(nullable = false, name = "created_by")
@@ -57,4 +57,16 @@ public class ClassRoom {
     @Builder.Default
     @OneToMany(mappedBy = "classRoom", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ClassMember> classMembers = new ArrayList<>(); // 클래스 맴버와의 매핑
+
+    public void update(String title, String description, Long difficultyLevel, ClassStatus status) {
+        this.title = title;
+        this.description = description;
+        this.difficultyLevel = difficultyLevel;
+        this.classStatus = status;
+    }
+
+    public void updateClassCode(Long classCode) {
+        this.classRoomCode = classCode;
+    }
+
 }

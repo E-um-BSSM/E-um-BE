@@ -53,4 +53,24 @@ public class User {
 
     @Column(name = "daily_compensation_at")
     private LocalDateTime dailyCompensationAt; // 일일 출석 보상 시간
+
+    public void changePassword(String encodedPassword) {
+        this.password = encodedPassword;
+    }
+
+    public void changeEquippedBadge(String equippedBadge) {
+        this.equippedBadge = equippedBadge;
+    }
+
+    public void addCurrency(long amount) {
+        this.currency += amount;
+    }
+
+    public void subtractCurrency(long amount) {
+        this.currency -= amount;
+    }
+
+    public void updateDailyCompensationAt(LocalDateTime now) {
+        this.dailyCompensationAt = now;
+    }
 }
