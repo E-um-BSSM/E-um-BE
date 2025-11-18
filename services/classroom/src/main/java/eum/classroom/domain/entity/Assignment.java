@@ -7,7 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "assignment")
+@Table(name = "assignments")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
@@ -35,4 +35,11 @@ public class Assignment {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    public void update(String title, String description, Long difficulty, LocalDateTime dueDate) {
+        this.title = title;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.dueDate = dueDate;
+    }
 }

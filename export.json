@@ -1,0 +1,5450 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Default module",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "summary": "signUp",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "username",
+                  "email",
+                  "password"
+                ]
+              },
+              "example": {
+                "username": "Lonnie Klein",
+                "email": "Vern.Treutel@gmail.com",
+                "password": "1VeQVRL0vR3Wd7u"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/signUpResponse"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "username": "eum",
+                    "email": "eum@eum.com",
+                    "system_role": "student",
+                    "strength": 1000,
+                    "created_at": "2025-09-03T10:00:00Z",
+                    "currency": 0,
+                    "daily_compensation_at": "2025-09-03T10:00:00Z",
+                    "equipped_badge": null
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "summary": "signIn",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              },
+              "example": {
+                "email": "Laron37@yahoo.com",
+                "password": "3NWb0wDKyB7VSKp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string"
+                        },
+                        "system_role": {
+                          "type": "string"
+                        },
+                        "access_token": {
+                          "type": "string"
+                        },
+                        "refresh_token": {
+                          "type": "string"
+                        },
+                        "expires_in": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "integer"
+                        },
+                        "daily_compensation_at": {
+                          "type": "string"
+                        },
+                        "equipped_badge": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "username",
+                        "system_role",
+                        "access_token",
+                        "refresh_token",
+                        "expires_in",
+                        "currency",
+                        "daily_compensation_at",
+                        "equipped_badge"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "username": "Angela Heller DVM",
+                    "system_role": "incididunt exercitation consequat velit",
+                    "access_token": "quis",
+                    "refresh_token": "Duis",
+                    "expires_in": "2025-11-03T04:55:30.598Z",
+                    "currency": 1242456,
+                    "daily_compensation_at": "2025-11-01T21:13:00.896Z",
+                    "equipped_badge": "FirstMan"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/signout": {
+      "post": {
+        "summary": "signOut",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/signOutRequest"
+              },
+              "example": {
+                "refresh_token": "in ex irure Excepteur"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/signOutResponse"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "message": "logged out"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "summary": "refresh",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/refreshRequest"
+              },
+              "example": {
+                "refresh_token": "nisi ullamco"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/refreshResponse"
+                },
+                "example": {
+                  "access_token": "Ut aliquip deserunt",
+                  "expires_in": "2025-10-28T22:55:20.874Z"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/users/badges": {
+      "get": {
+        "summary": "badge list search",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "badges": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/badge%20response"
+                          }
+                        }
+                      },
+                      "required": [
+                        "badges"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "badges": [
+                      {
+                        "badge_name": "Sylvia Hackett",
+                        "badge_description": "Totidem totidem cras talio aetas absque. Abeo atque cornu excepturi aequitas thalassinus certus templum velum paens. Currus tergeo uter tribuo ustilo cilicium congregatio commodi convoco. Clementia thorax thema tantum unde illo apostolus. Voluptates vilis accusamus sequi angulus tutis volo. Delectatio audio thorax comes vigilo crebro averto. Cur tergiversatio ducimus.",
+                        "earn_at": "2025-11-01T17:55:52.166Z"
+                      },
+                      {
+                        "badge_name": "Fannie Barton",
+                        "badge_description": "Decumbo curo aeternus somniculosus ait tonsor consequuntur taedium. Synagoga ullus aestas absque. Audacia alo sum teres. Barba sperno cognomen basium viriliter summisse. Casus solvo amo spargo armarium numquam vinum. Cernuus totus sapiente ratione eveniet dolores altus. Adipisci termes in conturbo uredo aperio aegrus suasoria ventito. Quisquam tergum cometes copiose crux.",
+                        "earn_at": "2025-11-02T13:53:00.491Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/users/badges/{badge-id}": {
+      "post": {
+        "summary": "badge register",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "badge-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/users/badges/{badge-id}/equip": {
+      "post": {
+        "summary": "badge equip",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "badge-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/users/badges/{badge-id}/release": {
+      "post": {
+        "summary": "badge release",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "badge-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/profiles/{username}": {
+      "get": {
+        "summary": "profileSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string"
+                        },
+                        "border": {
+                          "type": "string"
+                        },
+                        "background": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "border",
+                        "background",
+                        "created_at",
+                        "updated_at",
+                        "username"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "color": "indigo",
+                    "border": "culpa consequat in",
+                    "background": "magna dolor",
+                    "created_at": "2025-11-01T18:50:46.301Z",
+                    "updated_at": "2025-03-22",
+                    "username": "Eduardo Bins"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/profiles": {
+      "patch": {
+        "summary": "profileUpdate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string"
+                  },
+                  "border": {
+                    "type": "string"
+                  },
+                  "background": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "color",
+                  "border",
+                  "background"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string"
+                        },
+                        "border": {
+                          "type": "string"
+                        },
+                        "background": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "border",
+                        "background",
+                        "created_at",
+                        "updated_at",
+                        "username"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": false,
+                  "data": {
+                    "color": "lime",
+                    "border": "officia et voluptate ex eiusmod",
+                    "background": "in amet labore cupidatat",
+                    "created_at": "2025-11-02T05:38:28.780Z",
+                    "updated_at": "2025-07-01"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/profiles/{username}/list": {
+      "get": {
+        "summary": "profileListSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "profiles": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/profileResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "profiles"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "profiles": [
+                      {
+                        "color": "silver",
+                        "border": "nisi commodo sed minim tempor",
+                        "background": "ex do eu et",
+                        "created_at": "2025-11-02T07:13:08.677Z",
+                        "updated_at": "2024-11-21",
+                        "username": "Michael Lowe"
+                      },
+                      {
+                        "color": "plum",
+                        "border": "sit et minim",
+                        "background": "qui sit ex cillum anim",
+                        "created_at": "2025-11-02T03:31:58.440Z",
+                        "updated_at": "2026-01-26",
+                        "username": "Jorge Huels DDS"
+                      },
+                      {
+                        "color": "indigo",
+                        "border": "Ut amet sint tempor adipisicing",
+                        "background": "ea esse ex ut",
+                        "created_at": "2025-11-02T04:01:26.384Z",
+                        "updated_at": "2026-06-04",
+                        "username": "Ramon Mante"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/reviews": {
+      "post": {
+        "summary": "reviewCreate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reviewee_name": {
+                    "type": "string"
+                  },
+                  "class_id": {
+                    "type": "integer"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "reviewee_name",
+                  "class_id",
+                  "tags"
+                ]
+              },
+              "example": {
+                "reviewee_name": "Austin Pouros",
+                "class_id": 40,
+                "tags": [
+                  "mollitia"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/reviewResponse"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "review_id": 55,
+                    "reviewer_id": "100",
+                    "reviewee_id": "51",
+                    "class_id": 33,
+                    "tag": "sto",
+                    "created_at": "2025-11-02T01:46:42.835Z",
+                    "updated_at": "2025-09-18"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "reviewSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "reviews": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/reviewSearchResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "reviews"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "reviews": [
+                      {
+                        "tags": [
+                          "alias",
+                          "brevis",
+                          "quos"
+                        ],
+                        "created_at": "2025-11-02T15:31:14.646Z",
+                        "updated_at": "2025-02-25",
+                        "reviewer_name": "Amanda Hoeger",
+                        "reviewee_name": "Terri VonRueden",
+                        "class_id": 57,
+                        "review_id": 18
+                      },
+                      {
+                        "tags": [
+                          "auxilium"
+                        ],
+                        "created_at": "2025-11-02T10:28:09.677Z",
+                        "updated_at": "2025-05-26",
+                        "reviewer_name": "Fannie Zemlak",
+                        "reviewee_name": "Dolores VonRueden",
+                        "class_id": 46,
+                        "review_id": 77
+                      },
+                      {
+                        "tags": [
+                          "repellendus"
+                        ],
+                        "created_at": "2025-11-02T11:18:20.610Z",
+                        "updated_at": "2026-09-28",
+                        "reviewer_name": "Shirley Leannon",
+                        "reviewee_name": "Irma Koelpin",
+                        "class_id": 30,
+                        "review_id": 31
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/reviews/{review-id}": {
+      "patch": {
+        "summary": "reviewUpdate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "review-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reviewRequest"
+              },
+              "example": {
+                "reviewee_name": "Mabel Runte",
+                "class_id": 88,
+                "tags": [
+                  "tot",
+                  "suscipit"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/reviewResponse"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "tags": [
+                      "bibo",
+                      "vis",
+                      "tristis"
+                    ],
+                    "created_at": "2025-11-01T23:12:04.765Z",
+                    "updated_at": "2026-07-10"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/items/randomboxs/{box-id}": {
+      "post": {
+        "summary": "randomBoxOpen",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "box-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "box_id": {
+                          "type": "integer"
+                        },
+                        "item_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "box_id",
+                        "item_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "box_id": 20,
+                    "item_id": 87
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/items": {
+      "get": {
+        "summary": "myItemSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/itemSearchResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "items"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "items": [
+                      {
+                        "item_id": 61,
+                        "is_equipped": true,
+                        "obtained_at": "2025-11-02T00:27:24.942Z"
+                      },
+                      {
+                        "item_id": 51,
+                        "is_equipped": true,
+                        "obtained_at": "2025-11-02T14:12:47.612Z"
+                      },
+                      {
+                        "item_id": 94,
+                        "is_equipped": false,
+                        "obtained_at": "2025-11-01T23:25:42.706Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/items/{item-id}": {
+      "post": {
+        "summary": "itemEquipment",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "item-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "is_equipped": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "is_equipped"
+                ]
+              },
+              "example": {
+                "is_equipped": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "item_id": {
+                          "type": "integer"
+                        },
+                        "is_equipped": {
+                          "type": "boolean"
+                        },
+                        "obtained_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "item_id",
+                        "is_equipped",
+                        "obtained_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "item_id": 63,
+                    "is_equipped": false,
+                    "obtained_at": "2025-11-02T11:38:54.605Z"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/create": {
+      "post": {
+        "summary": "classCreate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{user-id}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/classRequest"
+              },
+              "example": {
+                "title": "off greedily but heavenly",
+                "description": "Creator tabula facilis arx tam attollo ventito sopor admoneo. Agnosco temeritas conspergo tamquam statim defaeco addo ambitus eligendi spectaculum. Amet cohors pax succedo approbo tandem hic angustus.",
+                "difficulty": 28284173,
+                "tags": [
+                  "patria",
+                  "coepi"
+                ],
+                "status": "Excepteur magna"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "class_id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "class_code": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "difficulty": {
+                          "type": "integer"
+                        },
+                        "created_by": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "class_id",
+                        "title",
+                        "class_code",
+                        "difficulty",
+                        "created_by"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "class_id": 95,
+                    "title": "overplay as oof stale excepting",
+                    "class_code": "29",
+                    "description": "Cupressus absque collum eos thesis titulus adinventitias. Voveo ter aperiam velociter canonicus pauper. Enim stella solitudo quidem volutabrum omnis saepe. Tantillus facere depromo caries officiis vulnero quisquam studio sordeo sollers. Xiphias conitor aperio cruentus carcer auditor aperio utrimque una. Aspernatur illum voco tempora addo.",
+                    "tags": [
+                      "supra"
+                    ],
+                    "difficulty": 28732328,
+                    "created_by": "labore et proident id deserunt"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/search/{class-id}": {
+      "get": {
+        "summary": "classSingleSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "class_id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "class_code": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "difficulty": {
+                          "type": "integer"
+                        },
+                        "created_by": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "class_id",
+                        "title",
+                        "class_code",
+                        "difficulty",
+                        "created_by"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "class_id": 62,
+                    "title": "fooey incidentally chase dissemble pish nutritious after hunger always perfectly",
+                    "class_code": "6",
+                    "description": "Brevis cursim socius titulus capto atavus conservo. Sortitus spes eum votum crapula tandem. Decimus doloribus ars adduco statua decet defendo vestrum. Tripudio cenaculum qui vilitas conduco caelum. Tribuo sopor sum. Xiphias cognomen atrocitas tui dolor congregatio. Copia blandior possimus assumenda.",
+                    "tags": [
+                      "calamitas",
+                      "calco",
+                      "cogito"
+                    ],
+                    "difficulty": -89452867,
+                    "created_by": "magna sit"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/search": {
+      "post": {
+        "summary": "classListSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/classSearchRequest"
+              },
+              "example": {
+                "difficulty": -62662139,
+                "tags": {},
+                "status": "officia mollit dolor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "classes": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/classResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "classes"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "classes": [
+                      {
+                        "class_id": 72,
+                        "title": "ferociously inside skyline testify violently seriously tensely beyond toward",
+                        "class_code": "26",
+                        "description": "Crustulum culpo bos ab bellum. Ultra nobis cum rerum arcesso consequatur asporto thesaurus alias acquiro. Beatus aeger arbitro corpus. Amo pax eos aegrus cogito templum repudiandae ago saepe. Uberrime angulus casso. Verbum admoneo cultellus asperiores aggero possimus conitor cubitum callide.",
+                        "tags": [
+                          "subseco"
+                        ],
+                        "difficulty": 35318347,
+                        "created_by": "consectetur reprehenderit sint adipisicing dolore"
+                      },
+                      {
+                        "class_id": 94,
+                        "title": "zowie um indeed or castanet with verify ick",
+                        "class_code": "83",
+                        "description": "Tyrannus contabesco vorax deludo virga tepidus autem alius attollo. Advoco tutamen candidus eaque tego aegrotatio ultio fugit aequus uterque. Voveo thymbra quo reiciendis tum abbas adflicto atavus antiquus currus. Constans tremo sto accommodo censura unde curriculum rem. Vivo tepidus ante volutabrum terror clamo adficio repellendus eius. Brevis carcer sint supra modi quisquam defungo cogo vis templum. Apostolus sol cupiditate ambulo conforto adipisci sursum strenuus curis. Iure condico calamitas tamisium acceptus ager cupio cur concido.",
+                        "tags": [
+                          "assumenda",
+                          "derideo",
+                          "comburo"
+                        ],
+                        "difficulty": 80088791,
+                        "created_by": "Excepteur et in aliqua reprehenderit"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}": {
+      "patch": {
+        "summary": "classUpdate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "difficulty": {
+                    "type": "integer"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "difficulty",
+                  "status"
+                ]
+              },
+              "example": {
+                "title": "overreact galvanize hungrily inasmuch",
+                "description": "Spargo uxor vigilo. Admiratio combibo adulatio cognatus.",
+                "difficulty": -37803635,
+                "tags": [
+                  "correptius",
+                  "bestia"
+                ],
+                "status": "elit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "class_id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "class_code": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "difficulty": {
+                          "type": "integer"
+                        },
+                        "created_by": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "class_id",
+                        "title",
+                        "class_code",
+                        "difficulty",
+                        "created_by"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "class_id": 12,
+                    "title": "prance frizz brr despite yowza",
+                    "class_code": "26",
+                    "description": "Ulterius velum aut trucido trans convoco vapulus. Audentia vulgus comparo. Sto spoliatio animi ars unde cohors cervus tam clam. Demoror degero absens astrum suspendo cui vulnus uter debeo.",
+                    "tags": [
+                      "depulso",
+                      "spero",
+                      "vito"
+                    ],
+                    "difficulty": -8714837,
+                    "created_by": "ea ut dolor aliqua pariatur"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "classDelete",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/assignments": {
+      "post": {
+        "summary": "assignmentCreate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "due_date": {
+                    "type": "string"
+                  },
+                  "difficulty": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "due_date",
+                  "difficulty"
+                ]
+              },
+              "example": {
+                "title": "mmm without apropos yippee new",
+                "description": "Surgo armarium coepi solio crudelis. Tardus aestivus thesis corrupti vulgivagus urbanus ascit alter suspendo excepturi.",
+                "due_date": "2024-11-13",
+                "difficulty": 75061339
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "assignment_id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "due_date": {
+                          "type": "string"
+                        },
+                        "difficulty": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "assignment_id",
+                        "title",
+                        "description",
+                        "due_date",
+                        "difficulty",
+                        "created_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "assignment_id": 10,
+                    "title": "finally gadzooks whose oddly unfurl",
+                    "description": "Thermae amaritudo adhuc sustineo vestigium sursum apud complectus thesis. Molestias saepe timidus dignissimos. Considero terebro corrumpo officiis aequus acerbitas mollitia apto cupiditas. Clamo defluo voco absorbeo charisma vapulus veniam.",
+                    "due_date": "2026-09-30",
+                    "difficulty": -51033776,
+                    "created_at": "2025-11-13T01:39:43.497Z"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "assignmentSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "assignments": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/assignmentSearchResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "assignments"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "assignments": [
+                      {
+                        "assignment_id": -24600660.34072344,
+                        "title": "brr meh repossess negligible minus",
+                        "description": "Synagoga undique deludo. Cupressus adstringo combibo astrum agnitio conicio verbum addo. Paens ipsa sollicito odit astrum comes cubitum varius.",
+                        "due_date": "2026-09-02",
+                        "created_at": "2025-11-13T02:07:45.983Z",
+                        "status": "velit aliqua consectetur voluptate officia",
+                        "graded": true
+                      },
+                      {
+                        "assignment_id": 59406788.765977055,
+                        "title": "justly drat throughout into owlishly hard-to-find alligator psst",
+                        "description": "Demo super depono damnatio aliquam xiphias cimentarius despecto. Alter quisquam baiulus est. Confugo approbo a deorsum sum beatae cena. Terreo reprehenderit cetera bonus. Totidem suppono thorax contigo demergo. Similique chirographum tabella terra eius depereo iusto.",
+                        "due_date": "2026-11-10",
+                        "created_at": "2025-11-13T00:36:51.619Z",
+                        "status": "ut Duis cillum incididunt",
+                        "graded": false
+                      },
+                      {
+                        "assignment_id": 31249582.887832254,
+                        "title": "energetically blah oh upright ugh simple edge repentant ordinary",
+                        "description": "Decipio volubilis illum capillus cursus. Corrumpo barba dapifer voco labore stultus. Amaritudo damnatio denique adimpleo cattus. Rerum arbitro cattus cruciamentum clementia porro thesis bestia. Coerceo crastinus debilito temptatio venustas nulla vulgo cultellus nisi subiungo. Ea spectaculum curia valeo.",
+                        "due_date": "2025-04-19",
+                        "created_at": "2025-11-13T05:26:24.147Z",
+                        "status": "velit id in do",
+                        "graded": true
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/assignments/{assignment-id}": {
+      "patch": {
+        "summary": "assignmentUpdate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "assignment-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "due_date": {
+                    "type": "string"
+                  },
+                  "difficulty": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "due_date",
+                  "difficulty"
+                ]
+              },
+              "example": {
+                "title": "whenever ah wherever oof reckless untidy outlying fooey",
+                "description": "Termes adversus temporibus contra absorbeo vesper. Aranea adaugeo perferendis illo tunc aureus artificiose arceo acquiro summopere. Deleniti pecco tricesimus communis soluta alii. Constans usus perferendis ex curso vigor arma adsuesco desolo. Aliquid ullam arguo et arcus absconditus corrigo cur a. Aer colligo virtus urbs cruentus amoveo tolero umquam. Comis ad utrum caritas delicate vulgaris speciosus crapula absconditus amet.",
+                "due_date": "2025-05-02",
+                "difficulty": 77995581
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "assignment_id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "due_date": {
+                          "type": "string"
+                        },
+                        "difficulty": {
+                          "type": "integer"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "assignment_id",
+                        "title",
+                        "description",
+                        "due_date",
+                        "difficulty",
+                        "created_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "assignment_id": 53,
+                    "title": "kookily whereas because progress yet a which weakly cool",
+                    "description": "Acer angelus antepono traho tergeo adfectus vito baiulus aedificium. Reprehenderit corpus victoria adnuo minus taceo id claustrum.",
+                    "due_date": "2026-06-26",
+                    "difficulty": -16662903,
+                    "created_at": "2025-11-12T11:35:51.139Z"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "assignmentDelete",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "assignment-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/invite": {
+      "post": {
+        "summary": "classInviteCodeCreate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "classInviteCodeGet",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "class_code": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "class_code"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "class_code": "52"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/join": {
+      "post": {
+        "summary": "classJoinApplication",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{user-id}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "message"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "message": "added on waiting list"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "classJoinCancel",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{user-id}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": false,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/accept": {
+      "patch": {
+        "summary": "memberAccept",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user_id": {
+                          "type": "string"
+                        },
+                        "joined_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "user_id",
+                        "joined_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/disagre": {
+      "delete": {
+        "summary": "memberDisagre",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/members": {
+      "delete": {
+        "summary": "memberKick",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/schedules": {
+      "get": {
+        "summary": "classScheduleListSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "schedules": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/classScheduleResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "schedules"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "schedules": [
+                      {
+                        "schedule_id": 49,
+                        "title": "1주차 수업",
+                        "description": "오리엔테이션 및 파이썬 기초",
+                        "start_at": "2025-10-28T15:29:49.082Z",
+                        "end_at": "2025-10-28T10:12:35.693Z",
+                        "created_at": "2025-10-28T01:29:56.967Z",
+                        "updated_at": "2025-09-09",
+                        "is_active": false
+                      },
+                      {
+                        "schedule_id": 35,
+                        "title": "2주차",
+                        "description": "파이썬 심화 및 알고리즘 기초",
+                        "end_at": "2025-10-28T17:06:57.846Z",
+                        "created_at": "2025-10-28T17:21:12.443Z",
+                        "updated_at": "2026-01-12",
+                        "is_active": true
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "classScheduleRegister",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/classScheduleRequset"
+              },
+              "example": {
+                "title": "1주차 수업",
+                "description": "오리엔테이션 및 Python 기초",
+                "start_at": "2025-10-28T06:21:25.300Z",
+                "end_at": "2025-10-28T12:14:40.628Z"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "schedule_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "schedule_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "schedule_id": 92
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/schedules/{schedules-id}": {
+      "delete": {
+        "summary": "classScheduleDelete",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "schedules-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "summary": "classScheduleUpdate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "schedules-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/classScheduleRequset"
+              },
+              "example": {
+                "title": "1주차 수업 (수정)",
+                "description": "오리엔테이션 + Python 기초 실습",
+                "start_at": "2025-10-28T07:49:26.401Z",
+                "end_at": "2025-10-28T14:41:57.821Z"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/classScheduleResponse"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "schedule_id": 7,
+                    "title": "1주차 수업 (수정)",
+                    "description": "오리엔테이션 + Python 기초 실습",
+                    "start_at": "2025-10-28T06:43:15.033Z",
+                    "end_at": "2025-10-28T01:26:32.704Z",
+                    "created_at": "2025-10-27T23:01:14.845Z",
+                    "updated_at": "2025-10-27T23:01:14.845Z",
+                    "is_active": false
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/{class-id}/schedules/{schedule-id}": {
+      "get": {
+        "summary": "classScheduleSingleSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "class-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "schedule-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/classScheduleResponse"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "schedule_id": 58,
+                    "title": "tomb remark wry after hm",
+                    "description": "Aeger spectaculum vox. Deripio absorbeo viriliter caput tener inflammatio surculus. Thesaurus cornu celebrer titulus quidem. Amissio decet talio. Vulgus vir stips abduco sortitus sustineo annus vix.",
+                    "start_at": "2025-11-02T04:34:08.340Z",
+                    "end_at": "2025-11-01T23:51:20.285Z",
+                    "created_at": "2025-11-02T07:09:19.279Z",
+                    "updated_at": "2025-08-05",
+                    "is_active": false
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/submissions": {
+      "post": {
+        "summary": "submissionSubmit",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "file_url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "content",
+                  "file_url"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "submission_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "submission_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "submission_id": 24
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/submissions/{submission-id}": {
+      "delete": {
+        "summary": "submissionSubmitCancel",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "submission-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "patch": {
+        "summary": "submissionFeedback",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "submission-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/submissionFeedbackRequest"
+              },
+              "example": {
+                "feedback": "dolor ea",
+                "score": 29681874
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/classes/assignments/{assignment-id}/submissions/": {
+      "get": {
+        "summary": "submissionSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "assignment-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "submissions": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/submissionResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "submissions"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "submissions": [
+                      {
+                        "content": "Currus termes arx veritas uredo cresco. Acceptus conforto magni color. Quasi confugo turba possimus depopulo aestas abundans.",
+                        "file_url": "https://surprised-junior.net/",
+                        "submitted_at": "2025-11-16T18:19:04.212Z",
+                        "user_id": "11",
+                        "graded_at": "2025-11-16T15:37:00.272Z",
+                        "score": 89858703,
+                        "feedback": "anim",
+                        "status": "aute commodo",
+                        "submission_id": 8
+                      },
+                      {
+                        "content": "Confido trado universe pel culpa sursum animi claudeo. Substantia tracto cumque placeat. Veritas via xiphias defendo.",
+                        "file_url": "https://bouncy-embossing.net/",
+                        "submitted_at": "2025-11-17T00:50:26.870Z",
+                        "user_id": "95",
+                        "graded_at": "2025-11-17T15:08:47.107Z",
+                        "score": -22230288,
+                        "feedback": "Duis reprehenderit",
+                        "status": "irure officia nulla adipisicing sit",
+                        "submission_id": 8
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/posts": {
+      "post": {
+        "summary": "postCreate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "draft": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "title",
+                  "body",
+                  "tags",
+                  "draft"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "post_id": {
+                          "type": "integer"
+                        },
+                        "author_id": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "draft": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "post_id",
+                        "author_id",
+                        "title",
+                        "body",
+                        "tags",
+                        "draft",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "postListSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "posts": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/postListResponse"
+                          }
+                        }
+                      },
+                      "required": [
+                        "posts"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/posts/{post-id}": {
+      "get": {
+        "summary": "postSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "post_id": {
+                          "type": "integer"
+                        },
+                        "author_id": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "draft": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "post_id",
+                        "author_id",
+                        "title",
+                        "body",
+                        "tags",
+                        "draft",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "patch": {
+        "summary": "postUpdate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Beare{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "draft": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "title",
+                  "body",
+                  "tags",
+                  "draft"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "post_id": {
+                          "type": "integer"
+                        },
+                        "author_id": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "draft": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "post_id",
+                        "author_id",
+                        "title",
+                        "body",
+                        "tags",
+                        "draft",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "postDelete",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/posts/{post-id}/comments": {
+      "post": {
+        "summary": "commentCreate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Beare{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "body"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "post_id": {
+                          "type": "integer"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "is_adopted": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "post_id",
+                        "body",
+                        "is_adopted",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "post_id": 77,
+                    "body": "Duis do dolor",
+                    "is_adopted": false,
+                    "created_at": "2025-11-01T15:39:30.164Z",
+                    "updated_at": "2026-01-22"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "commentSearch",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "post_id": {
+                          "type": "integer"
+                        },
+                        "user_id": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "is_adopted": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "post_id",
+                        "user_id",
+                        "body",
+                        "is_adopted",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "post_id": 94,
+                    "user_id": "60",
+                    "body": "pariatur non velit eiusmod in",
+                    "is_adopted": true,
+                    "created_at": "2025-11-02T13:49:11.928Z",
+                    "updated_at": "2025-11-29"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/posts/{post-id}/comments/{comments-id}": {
+      "delete": {
+        "summary": "commentDelete",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "comments-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "patch": {
+        "summary": "commentUpdate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "comments-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "body"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "post_id": {
+                      "type": "integer"
+                    },
+                    "body": {
+                      "type": "string"
+                    },
+                    "is_adopted": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "post_id",
+                    "body",
+                    "is_adopted",
+                    "created_at",
+                    "updated_at"
+                  ]
+                },
+                "example": {
+                  "post_id": 59,
+                  "body": "enim sed",
+                  "is_adopted": false,
+                  "created_at": "2025-11-02T14:24:01.685Z",
+                  "updated_at": "2024-12-11"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/posts/{post-id}/comments/{comments-id}/adopt": {
+      "patch": {
+        "summary": "commentAdopt",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "post-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "comments-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "is_adopted": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "is_adopted"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "post_id": {
+                          "type": "integer"
+                        },
+                        "user_id": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "is_adopted": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "post_id",
+                        "user_id",
+                        "body",
+                        "is_adopted",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "post_id": 59,
+                    "user_id": "75",
+                    "body": "ea minim in",
+                    "is_adopted": true,
+                    "created_at": "2025-11-01T23:06:52.126Z",
+                    "updated_at": "2026-10-17"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/push": {
+      "post": {
+        "summary": "submitPush",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/push%20request"
+              },
+              "example": {
+                "type": "id labore ut do",
+                "title": "nor times until ripe oof highlight",
+                "body": "ullamco magna",
+                "receivers": [
+                  "Ut aliquip irure",
+                  "elit velit ipsum Duis veniam"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/push/{push_id}": {
+      "patch": {
+        "summary": "readPush",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "push_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/push%20read%20request"
+              },
+              "example": {
+                "is_read": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/push%20read%20response"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "push_id": 74,
+                    "user_id": "4",
+                    "is_read": true,
+                    "read_at": "2025-11-01T17:03:09.746Z"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/pust": {
+      "get": {
+        "summary": "searchPush",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{access}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "pushs": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/push%20search%20response"
+                          }
+                        }
+                      },
+                      "required": [
+                        "pushs"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "pushs": [
+                      {
+                        "push_id": 25,
+                        "type": "consequat",
+                        "title": "behind zowie thoroughly flat whether geez guilty oddball markup",
+                        "body": "cillum eiusmod qui",
+                        "created_at": "2025-11-17T02:10:17.404Z",
+                        "is_read": false,
+                        "read_at": "2025-11-16T19:58:15.863Z"
+                      },
+                      {
+                        "push_id": 76,
+                        "type": "ipsum proident consequat reprehenderit",
+                        "title": "what jealously happily consequently furthermore",
+                        "body": "in aliquip Lorem fugiat culpa",
+                        "created_at": "2025-11-16T18:15:10.610Z",
+                        "is_read": true,
+                        "read_at": "2025-11-16T22:24:54.116Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/transaction/daily": {
+      "post": {
+        "summary": "dailyCompensation",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer {{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "currency": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "currency"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "currency": 9270675
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/transactions/transfer": {
+      "post": {
+        "summary": "giveCurrency",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "Bearer{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/transfer%20request"
+              },
+              "example": {
+                "receiver_id": "22",
+                "amount": 370
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/globalResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "badge response": {
+        "type": "object",
+        "properties": {
+          "badge_name": {
+            "type": "string"
+          },
+          "badge_description": {
+            "type": "string"
+          },
+          "earn_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "badge_name",
+          "badge_description",
+          "earn_at"
+        ]
+      },
+      "itemEquipmentRequest": {
+        "type": "object",
+        "properties": {
+          "is_equipped": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "is_equipped"
+        ]
+      },
+      "randomBoxResponse": {
+        "type": "object",
+        "properties": {
+          "box_id": {
+            "type": "integer"
+          },
+          "item_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "item_id",
+          "box_id"
+        ]
+      },
+      "itemSearchResponse": {
+        "type": "object",
+        "properties": {
+          "item_id": {
+            "type": "integer"
+          },
+          "is_equipped": {
+            "type": "boolean"
+          },
+          "obtained_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "is_equipped",
+          "obtained_at"
+        ]
+      },
+      "reviewRequest": {
+        "type": "object",
+        "properties": {
+          "reviewee_name": {
+            "type": "string"
+          },
+          "class_id": {
+            "type": "integer"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "reviewee_name",
+          "class_id",
+          "tags"
+        ]
+      },
+      "reviewSearchResponse": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "reviewer_name": {
+            "type": "string"
+          },
+          "reviewee_name": {
+            "type": "string"
+          },
+          "class_id": {
+            "type": "integer"
+          },
+          "review_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "reviewer_name",
+          "reviewee_name",
+          "class_id",
+          "review_id",
+          "tags",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "reviewResponse": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tags",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "profileRequest": {
+        "type": "object",
+        "properties": {
+          "color": {
+            "type": "string"
+          },
+          "border": {
+            "type": "string"
+          },
+          "background": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "color",
+          "border",
+          "background"
+        ]
+      },
+      "profileResponse": {
+        "type": "object",
+        "properties": {
+          "color": {
+            "type": "string"
+          },
+          "border": {
+            "type": "string"
+          },
+          "background": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "color",
+          "border",
+          "background",
+          "created_at",
+          "updated_at",
+          "username"
+        ]
+      },
+      "signUpResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "system_role": {
+            "type": "string"
+          },
+          "strength": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "integer"
+          },
+          "daily_compensation_at": {
+            "type": "string"
+          },
+          "equipped_badge": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "email",
+          "system_role",
+          "strength",
+          "created_at",
+          "currency",
+          "daily_compensation_at",
+          "equipped_badge"
+        ]
+      },
+      "signInResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "system_role": {
+            "type": "string"
+          },
+          "access_token": {
+            "type": "string"
+          },
+          "refresh_token": {
+            "type": "string"
+          },
+          "expires_in": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "integer"
+          },
+          "daily_compensation_at": {
+            "type": "string"
+          },
+          "equipped_badge": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "system_role",
+          "access_token",
+          "refresh_token",
+          "expires_in",
+          "username",
+          "currency",
+          "daily_compensation_at",
+          "equipped_badge"
+        ]
+      },
+      "refreshResponse": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "expires_in": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "access_token",
+          "expires_in"
+        ]
+      },
+      "signOutResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "signUpRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "email",
+          "password"
+        ]
+      },
+      "signInRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "refreshRequest": {
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "refresh_token"
+        ]
+      },
+      "signOutRequest": {
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "refresh_token"
+        ]
+      },
+      "classRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "integer"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "difficulty",
+          "status"
+        ]
+      },
+      "classSearchRequest": {
+        "type": "object",
+        "properties": {
+          "difficulty": {
+            "type": "integer"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "submissionRequest": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "file_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content",
+          "file_url"
+        ]
+      },
+      "assignmentRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "difficulty",
+          "due_date"
+        ]
+      },
+      "classScheduleRequset": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "start_at": {
+            "type": "string"
+          },
+          "end_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "start_at",
+          "end_at"
+        ]
+      },
+      "submissionFeedbackRequest": {
+        "type": "object",
+        "properties": {
+          "feedback": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "feedback",
+          "score"
+        ]
+      },
+      "classResponse": {
+        "type": "object",
+        "properties": {
+          "class_id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "class_code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "difficulty": {
+            "type": "integer"
+          },
+          "created_by": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "class_id",
+          "title",
+          "class_code",
+          "difficulty",
+          "created_by"
+        ]
+      },
+      "submissionResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "file_url": {
+            "type": "string"
+          },
+          "submitted_at": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "graded_at": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "feedback": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "submission_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "content",
+          "file_url",
+          "submitted_at",
+          "user_id",
+          "graded_at",
+          "score",
+          "feedback",
+          "status",
+          "submission_id"
+        ]
+      },
+      "memberAcceptResponse": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "joined_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "joined_at"
+        ]
+      },
+      "assignmentSearchResponse": {
+        "type": "object",
+        "properties": {
+          "assignment_id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "assignment_id",
+          "title",
+          "description",
+          "due_date",
+          "created_at",
+          "status"
+        ]
+      },
+      "assignmentResponse": {
+        "type": "object",
+        "properties": {
+          "assignment_id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "assignment_id",
+          "title",
+          "description",
+          "due_date",
+          "difficulty",
+          "created_at"
+        ]
+      },
+      "classScheduleResponse": {
+        "type": "object",
+        "properties": {
+          "schedule_id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "start_at": {
+            "type": "string"
+          },
+          "end_at": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schedule_id",
+          "title",
+          "start_at",
+          "end_at",
+          "created_at",
+          "status",
+          "updated_at"
+        ]
+      },
+      "postRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "draft": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "title",
+          "body",
+          "tags",
+          "draft"
+        ]
+      },
+      "postResponse": {
+        "type": "object",
+        "properties": {
+          "post_id": {
+            "type": "integer"
+          },
+          "author_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "draft": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "post_id",
+          "author_id",
+          "title",
+          "body",
+          "tags",
+          "draft",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "postListResponse": {
+        "type": "object",
+        "properties": {
+          "post_id": {
+            "type": "integer"
+          },
+          "author_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "draft": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "post_id",
+          "author_id",
+          "title",
+          "tags",
+          "draft",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "postCommentRequest": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "postCommentAdoptRequest": {
+        "type": "object",
+        "properties": {
+          "is_adopted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "is_adopted"
+        ]
+      },
+      "postCommentCreateResponse": {
+        "type": "object",
+        "properties": {
+          "post_id": {
+            "type": "integer"
+          },
+          "body": {
+            "type": "string"
+          },
+          "is_adopted": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "body",
+          "created_at",
+          "updated_at",
+          "post_id",
+          "is_adopted"
+        ]
+      },
+      "postCommentResponse": {
+        "type": "object",
+        "properties": {
+          "post_id": {
+            "type": "integer"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "is_adopted": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "post_id",
+          "user_id",
+          "body",
+          "created_at",
+          "updated_at",
+          "is_adopted"
+        ]
+      },
+      "push request": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "receivers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "receivers"
+        ]
+      },
+      "push read request": {
+        "type": "object",
+        "properties": {
+          "is_read": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "is_read"
+        ]
+      },
+      "push read response": {
+        "type": "object",
+        "properties": {
+          "push_id": {
+            "type": "integer"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "is_read": {
+            "type": "boolean"
+          },
+          "read_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "push_id",
+          "user_id",
+          "is_read",
+          "read_at"
+        ]
+      },
+      "push search response": {
+        "type": "object",
+        "properties": {
+          "push_id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "is_read": {
+            "type": "boolean"
+          },
+          "read_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "push_id",
+          "type",
+          "title",
+          "body",
+          "created_at",
+          "is_read"
+        ]
+      },
+      "transfer request": {
+        "type": "object",
+        "properties": {
+          "receiver_id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "receiver_id",
+          "amount"
+        ]
+      },
+      "globalResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "required": [
+          "success",
+          "data"
+        ]
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}
